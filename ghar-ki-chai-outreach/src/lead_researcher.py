@@ -94,8 +94,9 @@ def build_search_provider(provider_name: str | None = None) -> SearchProvider:
         return SerpApiSearchProvider(os.getenv("SERPAPI_API_KEY", ""))
     if provider == "tavily":
         return TavilySearchProvider(os.getenv("TAVILY_API_KEY", ""))
-    if provider != "mock":
-        logging.warning("Unknown SEARCH_PROVIDER=%s; falling back to mock provider.", provider)
+    if provider in {"manual_or_api", "manual", "mock"}:
+        return MockSearchProvider()
+    logging.warning("Unknown SEARCH_PROVIDER=%s; falling back to mock provider.", provider)
     return MockSearchProvider()
 
 
@@ -104,7 +105,12 @@ def generate_queries(search_config: dict) -> list[SearchQuery]:
     categories = search_config.get("categories", [])
     locations = search_config.get("locations", [])
     templates = search_config.get("query_templates", ["{category} {location}"])
-    max_queries = int(search_config.get("search", {}).get("max_queries", 50))
+    max_queries = int(
+        search_config.get("settings", {}).get(
+            "max_queries",
+            search_config.get("search", {}).get("max_queries", 50),
+        )
+    )
 
     queries: list[SearchQuery] = []
     for category in categories:
@@ -118,9 +124,11 @@ def generate_queries(search_config: dict) -> list[SearchQuery]:
 
 def research_leads(search_config: dict, provider: SearchProvider | None = None) -> list[dict]:
     """Run configured searches and return raw lead rows."""
-    provider = provider or build_search_provider(search_config.get("search", {}).get("provider"))
-    results_per_query = int(search_config.get("search", {}).get("results_per_query", 5))
-    delay = float(search_config.get("search", {}).get("rate_limit_seconds", 2))
+    settings = search_config.get("settings", {})
+    legacy_search = search_config.get("search", {})
+    provider = provider or build_search_provider(settings.get("search_provider", legacy_search.get("provider")))
+    results_per_query = int(settings.get("max_results_per_query", legacy_search.get("results_per_query", 5)))
+    delay = float(settings.get("request_delay_seconds", legacy_search.get("rate_limit_seconds", 2)))
 
     rows: list[dict] = []
     for search_query in generate_queries(search_config):

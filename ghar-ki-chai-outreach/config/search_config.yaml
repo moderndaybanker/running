@@ -1,39 +1,72 @@
-# Edit this file to change which prospects and areas are researched.
-brand_name: Ghar Ki Chai
-base_location: London and South East England
+# Ghar Ki Chai lead research settings
+# Edit the lists below to change which areas and business types are searched.
 
+brand_name: "Ghar Ki Chai"
+region_focus: "London and the South East of England"
+
+# Target locations to search first.
+locations:
+  - Shoreditch
+  - Hackney
+  - Islington
+  - Angel
+  - Notting Hill
+  - Chelsea
+  - Kensington
+  - Marylebone
+  - Hampstead
+  - Richmond
+  - Chiswick
+  - Clapham
+  - Dulwich
+  - Greenwich
+  - Blackheath
+  - Canary Wharf
+  - Borough Market
+  - Covent Garden
+  - Brighton
+  - Hove
+  - Guildford
+  - Tunbridge Wells
+  - Sevenoaks
+  - Whitstable
+  - Canterbury
+  - Oxford
+  - Cambridge
+
+# Business categories that may be a good fit for premium instant chai,
+# gifting, wholesale stockists, menu collaborations, or hospitality partners.
 categories:
   - independent deli
-  - premium café
+  - artisan food shop
+  - premium cafe
+  - speciality coffee shop
   - farm shop
   - gift shop
   - wellness store
   - yoga studio
   - boutique hotel
-  - South Asian food store
-  - corporate gifting buyer
+  - South Asian grocery
+  - Indian cafe
   - concept store
   - premium grocer
+  - hamper company
+  - corporate gifting company
 
-locations:
-  - London
-  - Brighton
-  - Oxford
-  - Cambridge
-  - Guildford
-  - Reading
-  - Sevenoaks
-  - Tunbridge Wells
-  - Canterbury
-  - Windsor
-
+# Search query templates. The workflow replaces {category} and {location}
+# with each value from the lists above.
 query_templates:
-  - "{category} {location} contact"
-  - "{category} {location} stockist"
-  - "{category} {location} independent"
+  - "{category} in {location}"
+  - "best {category} {location}"
+  - "independent {category} {location}"
+  - "artisan {category} {location}"
+  - "premium {category} {location}"
+  - "{category} contact email {location}"
+  - "{category} stockists gifts {location}"
 
-search:
-  provider: mock
-  results_per_query: 5
-  max_queries: 20
-  rate_limit_seconds: 2
+# Search settings. Keep request_delay_seconds polite when using live APIs or scraping.
+settings:
+  max_results_per_query: 10
+  request_delay_seconds: 2
+  search_provider: "manual_or_api"
+  output_raw_file: "data/raw/raw_leads.csv"

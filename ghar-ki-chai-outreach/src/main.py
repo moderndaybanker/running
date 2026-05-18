@@ -36,7 +36,12 @@ def build_parser() -> argparse.ArgumentParser:
 
 def run_research(search_config: dict) -> Path:
     rows = research_leads(search_config)
-    output_path = PROJECT_ROOT / "data" / "raw" / f"raw_leads_{timestamp()}.csv"
+    configured_output = search_config.get("settings", {}).get("output_raw_file")
+    output_path = (
+        PROJECT_ROOT / configured_output
+        if configured_output
+        else PROJECT_ROOT / "data" / "raw" / f"raw_leads_{timestamp()}.csv"
+    )
     save_csv(rows, output_path)
     logging.info("Saved %s raw leads to %s", len(rows), output_path)
     return output_path
