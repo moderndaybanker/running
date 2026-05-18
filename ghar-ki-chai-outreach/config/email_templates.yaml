@@ -1,0 +1,29 @@
+# Outreach drafts are generated for review only. The software never sends emails.
+initial_email:
+  subject: "A premium instant chai idea for {business_name}"
+  body: |
+    Hi {contact_name},
+
+    I came across {business_name} while researching {category} partners in {location}. It looks like the kind of place whose customers may appreciate a premium, convenient chai option.
+
+    Ghar Ki Chai is a UK-based premium instant chai brand creating chai spice mixes and instant chai products inspired by proper homemade chai. I wondered whether our range could be a good fit for your shelves, gifting range, menu, or customer experience.
+
+    A few reasons it may be relevant for {business_name}:
+    {personalisation_points}
+
+    Would you be open to reviewing a short wholesale/sample pack introduction?
+
+    Best,
+    Ghar Ki Chai
+
+follow_up_email:
+  subject: "Following up — Ghar Ki Chai for {business_name}"
+  body: |
+    Hi {contact_name},
+
+    I wanted to follow up on my note about Ghar Ki Chai. Given {business_name}'s focus on {category}, I thought our premium instant chai could be a nice addition for customers looking for warming, giftable, and easy-to-prepare chai.
+
+    If useful, I can send a concise product and wholesale overview for review.
+
+    Best,
+    Ghar Ki Chai

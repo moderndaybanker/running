@@ -1,0 +1,39 @@
+# Edit this file to change which prospects and areas are researched.
+brand_name: Ghar Ki Chai
+base_location: London and South East England
+
+categories:
+  - independent deli
+  - premium café
+  - farm shop
+  - gift shop
+  - wellness store
+  - yoga studio
+  - boutique hotel
+  - South Asian food store
+  - corporate gifting buyer
+  - concept store
+  - premium grocer
+
+locations:
+  - London
+  - Brighton
+  - Oxford
+  - Cambridge
+  - Guildford
+  - Reading
+  - Sevenoaks
+  - Tunbridge Wells
+  - Canterbury
+  - Windsor
+
+query_templates:
+  - "{category} {location} contact"
+  - "{category} {location} stockist"
+  - "{category} {location} independent"
+
+search:
+  provider: mock
+  results_per_query: 5
+  max_queries: 20
+  rate_limit_seconds: 2
