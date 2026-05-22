@@ -1,0 +1,48 @@
+# Weights used by lead_scorer.py. Scores are capped between 0 and 100.
+base_score: 20
+
+category_weights:
+  independent deli: 18
+  premium café: 18
+  farm shop: 16
+  gift shop: 14
+  wellness store: 15
+  yoga studio: 12
+  boutique hotel: 14
+  South Asian food store: 20
+  corporate gifting buyer: 15
+  concept store: 16
+  premium grocer: 20
+
+positive_keywords:
+  chai: 12
+  tea: 10
+  coffee: 6
+  artisan: 8
+  independent: 8
+  premium: 8
+  organic: 7
+  wellness: 7
+  gift: 7
+  hamper: 8
+  local: 5
+  spice: 9
+  South Asian: 10
+  Indian: 9
+  vegan: 5
+  boutique: 6
+  luxury: 7
+
+negative_keywords:
+  wholesale only: -8
+  closed: -25
+  permanently closed: -40
+  franchise: -8
+  supermarket chain: -12
+
+signals:
+  has_email: 10
+  has_contact_page: 7
+  has_instagram: 5
+  has_website: 8
+  london_or_south_east: 8
